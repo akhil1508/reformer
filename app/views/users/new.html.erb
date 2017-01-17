@@ -1,0 +1,46 @@
+ <!--<form accept-charset="utf-8" action="/users" method="post">
+   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+   <label>Username:</label><input type = "text" name = "user[username]" placeholder="NameOfMine" /><br />
+   <label>Password:</label><input type = "password" name = "user[password]" placeholder = "1234567" /> <br />
+   <label>E-mail:</label><input type = "text" name = "user[email]" placeholder="douche@douche.douche" /><br />
+      <input type="submit" value="Submit">
+</form>
+-->
+<!--
+<%= form_tag('/users') do %>
+<%= label_tag("Username") %>
+<%= text_field_tag(:username) %>
+<br />
+<%= label_tag("Password")%>
+<%= password_field_tag(:password)%>
+<br />
+<%= label_tag("Email")%>
+<%= text_field_tag(:email) %>
+<br />
+<%= submit_tag("Submit")%>
+<%end %>
+-->
+
+
+
+<%= form_for @user do |f|%>
+  <%= label_tag('Username') %>
+  <%= f.text_field :username, placeholder: "Douchebag", :value => "Nobody" %> <br>
+  <%= label_tag('Password')%>
+  <%= f.password_field :password,placeholder: "*******" %>
+  <br>
+  <%= label_tag('Email') %>
+  <%= f.text_field :email, placeholder: "bigdouche@douche.douches" %>
+  <br>
+  <%= f.submit "Create new user"%>
+  <% end %>
+  <% if @user.errors.any?  %>
+    <h1> Errors </h1>
+    <ul>
+      <% @user.errors.messages.each do |message| %>
+    <li>
+      <%= message.join(' ').capitalize%>
+    </li>
+    <% end %>
+    </ul>
+    <% end %>
